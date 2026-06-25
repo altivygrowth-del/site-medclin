@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedClin – Clínica Médica | Guaratuba, PR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #0B5394;
+      --blue-light:  #1a73e8;
+      --blue-pale:   #e8f4fd;
+      --green:       #27ae60;
+      --green-light: #eafaf1;
+      --text:        #1f2937;
+      --muted:       #6b7280;
+      --white:       #ffffff;
+      --bg:          #f8fbff;
+      --radius:      12px;
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px; background: var(--blue); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-icon svg { width: 22px; height: 22px; fill: white; }
+    .nav-logo-text { font-size: 1.2rem; font-weight: 700; color: var(--blue); letter-spacing: -0.5px; }
+    .nav-logo-sub { font-size: 0.7rem; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
+      color: var(--text); transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--blue-pale); color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: white !important; border-radius: 8px;
+      padding: 9px 20px !important; font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0;
+        background: white; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); gap: 4px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      background: url('https://images.unsplash.com/photo-1535914254981-b5012eebbd15?w=1920&q=80') center/cover no-repeat;
+      padding-top: 68px;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(11,83,148,0.88) 0%, rgba(26,115,232,0.7) 60%, rgba(0,0,0,0.3) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 680px; margin-left: 8%; padding: 60px 24px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px); color: white; font-size: 0.8rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; color: white;
+      line-height: 1.15; letter-spacing: -1px; margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: #90d5ff; }
+    .hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.88); line-height: 1.7;
+      margin-bottom: 36px; max-width: 520px;
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+      transition: transform 0.18s, box-shadow 0.18s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn-primary { background: var(--green); color: white; }
+    .btn-outline { background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.6); backdrop-filter: blur(4px); }
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .hero-stats {
+      position: absolute; bottom: 40px; left: 8%; z-index: 1;
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .stat { color: white; }
+    .stat-num { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.75); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 80px 5%; }
+    .section-tag {
+      display: inline-block; background: var(--blue-pale); color: var(--blue);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 14px;
+    }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .section-lead { font-size: 1.05rem; color: var(--muted); line-height: 1.7; max-width: 580px; }
+
+    /* ── SOBRE ── */
+    .sobre { background: var(--bg); }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .sobre-image {
+      border-radius: 20px; overflow: hidden; position: relative;
+      box-shadow: 0 20px 60px rgba(11,83,148,0.15);
+    }
+    .sobre-image img { width: 100%; height: 420px; object-fit: cover; }
+    .sobre-image-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: white; border-radius: 14px; padding: 14px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sobre-image-badge-icon { width: 44px; height: 44px; background: var(--blue-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .sobre-image-badge-icon svg { width: 24px; height: 24px; fill: var(--blue); }
+    .sobre-image-badge-text strong { display: block; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .sobre-image-badge-text span { font-size: 0.78rem; color: var(--muted); }
+    .sobre-text .section-lead { max-width: 100%; margin-bottom: 28px; }
+    .valores { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .valor-item {
+      background: white; border-radius: 12px; padding: 16px;
+      border: 1px solid #e5e7eb;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .valor-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .valor-icon svg { width: 18px; height: 18px; }
+    .valor-item strong { font-size: 0.9rem; font-weight: 600; }
+    .valor-item p { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+    @media (max-width: 768px) {
+      .sobre-grid { grid-template-columns: 1fr; }
+      .sobre-image img { height: 280px; }
+    }
+
+    /* ── ESPECIALIDADES PREVIEW ── */
+    .espec-preview { background: white; }
+    .espec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
+    .espec-link { color: var(--blue); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+    .espec-link:hover { text-decoration: underline; }
+    .espec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+    .espec-card {
+      background: var(--bg); border-radius: 14px; padding: 24px 20px;
+      border: 1px solid #e5e7eb; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .espec-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(11,83,148,0.1); border-color: var(--blue); }
+    .espec-icon { width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
+    .espec-icon svg { width: 28px; height: 28px; }
+    .espec-card h3 { font-size: 0.95rem; font-weight: 600; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      text-align: center; padding: 60px 5%;
+    }
+    .cta-band h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: white; margin-bottom: 12px; }
+    .cta-band p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 32px; }
+    .cta-band .btn-wpp { background: #25d366; color: white; font-size: 1rem; padding: 15px 32px; border-radius: 12px; }
+
+    /* ── COMO AGENDAR ── */
+    .agendar { background: var(--bg); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 1000px; margin: 48px auto 0; }
+    .step { text-align: center; padding: 32px 20px; background: white; border-radius: 14px; border: 1px solid #e5e7eb; }
+    .step-num { width: 48px; height: 48px; background: var(--blue); color: white; border-radius: 50%; font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1b2a; color: rgba(255,255,255,0.75);
+      padding: 56px 5% 24px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand .nav-logo-text { color: white; }
+    .footer-brand .nav-logo-sub { color: rgba(255,255,255,0.5); }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; margin-top: 14px; color: rgba(255,255,255,0.6); max-width: 300px; }
+    .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.3px; }
+    .footer-col a, .footer-col p { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    .social-links { display: flex; gap: 12px; }
+    .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .social-link:hover { background: rgba(255,255,255,0.15); }
+    .social-link svg { width: 16px; height: 16px; fill: white; }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { position: static; margin-top: 40px; }
+      .hero-content { margin-left: 0; }
+    }
+
+    /* WhatsApp float */
+    .wpp-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 58px; height: 58px; background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s;
+    }
+    .wpp-float:hover { transform: scale(1.1); }
+    .wpp-float svg { width: 30px; height: 30px; fill: white; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">MedClin</div>
+      <div class="nav-logo-sub">Clínica Médica</div>
+    </div>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="active">Início</a>
+    <a href="especialidades.html">Especialidades</a>
+    <a href="contato.html">Contato</a>
+    <a href="https://wa.me/5541999999999" target="_blank" class="nav-cta">Agendar Consulta</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Guaratuba, Paraná</div>
+    <h1>Cuidado médico de <em>qualidade</em> para toda a família</h1>
+    <p>Atendimento humanizado com especialistas dedicados à sua saúde e bem-estar. Agende sua consulta com facilidade e rapidez.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5541999999999" target="_blank" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.541 5.875L0 24l6.332-1.518A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.893 0-3.671-.497-5.21-1.367l-.374-.212-3.756.9.938-3.65-.232-.384A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="especialidades.html" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5C3.89 4 3 4.9 3 6l-.01 14c0 1.1.89 2 2.01 2H19c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+        Ver Especialidades
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Especialidades</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Atendimento humanizado</div></div>
+    <div class="stat"><div class="stat-num">Guaratuba</div><div class="stat-label">Paraná</div></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-image">
+      <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&q=80" alt="Médico atendendo paciente" />
+      <div class="sobre-image-badge">
+        <div class="sobre-image-badge-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <div class="sobre-image-badge-text">
+          <strong>Atendimento de Qualidade</strong>
+          <span>Profissionais experientes e dedicados</span>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-text">
+      <span class="section-tag">Quem Somos</span>
+      <h2 class="section-title">Saúde com cuidado, atenção e carinho</h2>
+      <p class="section-lead">A MedClin é uma clínica médica localizada em Guaratuba, PR, dedicada a oferecer atendimento humanizado e de excelência para pacientes de todas as idades. Nossa equipe de profissionais qualificados está pronta para cuidar da sua saúde com responsabilidade e atenção.</p>
+      <div class="valores">
+        <div class="valor-item">
+          <div class="valor-icon" style="background:#eef6ff"><svg viewBox="0 0 24 24" fill="#0B5394"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg></div>
+          <div><strong>Missão</strong><p>Promover saúde com qualidade e humanidade.</p></div>
+        </div>
+        <div class="valor-item">
+          <div class="valor-icon" style="background:#eafaf1"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+          <div><strong>Excelência</strong><p>Profissionais capacitados e atualizados.</p></div>
+        </div>
+        <div class="valor-item">
+          <div class="valor-icon" style="background:#fff8ee"><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+          <div><strong>Acolhimento</strong><p>Ambiente aconchegante e familiar.</p></div>
+        </div>
+        <div class="valor-item">
+          <div class="valor-icon" style="background:#fdf2ff"><svg viewBox="0 0 24 24" fill="#9333ea"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+          <div><strong>Confiança</strong><p>Ética e sigilo em cada atendimento.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES PREVIEW -->
+<section class="espec-preview">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="espec-header">
+      <div>
+        <span class="section-tag">O que oferecemos</span>
+        <h2 class="section-title">Nossas Especialidades</h2>
+        <p class="section-lead">Contamos com uma equipe multidisciplinar para cuidar da saúde de toda a sua família.</p>
+      </div>
+      <a href="especialidades.html" class="espec-link">Ver todas →</a>
+    </div>
+    <div class="espec-grid">
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#eef6ff"><svg viewBox="0 0 24 24" fill="#0B5394"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+        <h3>Clínica Médica</h3>
+      </div>
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#eafaf1"><svg viewBox="0 0 24 24" fill="#27ae60"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+        <h3>Pediatria</h3>
+      </div>
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#fff0f0"><svg viewBox="0 0 24 24" fill="#ef4444"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg></div>
+        <h3>Cardiologia</h3>
+      </div>
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#fffbeb"><svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg></div>
+        <h3>Dermatologia</h3>
+      </div>
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#fdf2ff"><svg viewBox="0 0 24 24" fill="#9333ea"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></div>
+        <h3>Ginecologia</h3>
+      </div>
+      <div class="espec-card">
+        <div class="espec-icon" style="background:#ecfdf5"><svg viewBox="0 0 24 24" fill="#059669"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5V2.05z"/></svg></div>
+        <h3>Ortopedia</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Pronto para cuidar da sua saúde?</h2>
+  <p>Agende sua consulta pelo WhatsApp de forma rápida e sem complicações.</p>
+  <a href="https://wa.me/5541999999999" target="_blank" class="btn btn-wpp">
+    <svg viewBox="0 0 24 24" fill="white" style="width:20px;height:20px;margin-right:10px;display:inline-block;vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.541 5.875L0 24l6.332-1.518A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.893 0-3.671-.497-5.21-1.367l-.374-.212-3.756.9.938-3.65-.232-.384A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Falar pelo WhatsApp
+  </a>
+</div>
+
+<!-- COMO AGENDAR -->
+<section class="agendar">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <span class="section-tag">Simples e rápido</span>
+    <h2 class="section-title">Como agendar sua consulta</h2>
+    <p class="section-lead" style="margin:0 auto">Em poucos passos você garante seu atendimento na MedClin.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Entre em contato</h3>
+        <p>Nos envie uma mensagem pelo WhatsApp ou ligue para nossa clínica.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Escolha o dia</h3>
+        <p>Nossa equipe verifica a disponibilidade e confirma o melhor horário para você.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Compareça</h3>
+        <p>Chegue alguns minutos antes, com seus documentos e plano de saúde em mãos.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Cuide-se!</h3>
+        <p>Receba atendimento de qualidade dos nossos especialistas dedicados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+        </div>
+        <div>
+          <div class="nav-logo-text">MedClin</div>
+          <div class="nav-logo-sub">Clínica Médica</div>
+        </div>
+      </div>
+      <p>Cuidado médico humanizado para toda a família, em Guaratuba, PR.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="index.html">Início</a>
+      <a href="especialidades.html">Especialidades</a>
+      <a href="contato.html">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>📍 Rua João Andrade Guimarães, 124 – Guaratuba, PR</p>
+      <p>📱 WhatsApp: (41) 9 9999-9999</p>
+      <p>🕐 Seg–Sex: 8h às 18h</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 MedClin Clínica Médica. Todos os direitos reservados.</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/medclin_guaratuba/" target="_blank" class="social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float button -->
+<a href="https://wa.me/5541999999999" target="_blank" class="wpp-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.541 5.875L0 24l6.332-1.518A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.893 0-3.671-.497-5.21-1.367l-.374-.212-3.756.9.938-3.65-.232-.384A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+</body>
+</html>
