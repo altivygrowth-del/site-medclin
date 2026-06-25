@@ -149,7 +149,8 @@
     .espec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
     .espec-link { color: var(--blue); font-weight: 600; font-size: 0.95rem; background: none; border: none; cursor: pointer; font-family: inherit; }
     .espec-link:hover { text-decoration: underline; }
-    .espec-grid-home { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+    .espec-grid-home { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 800px; margin: 0 auto; }
+    @media (max-width: 600px) { .espec-grid-home { grid-template-columns: repeat(2, 1fr); } }
     .espec-card-sm { background: var(--bg); border-radius: 14px; padding: 24px 20px; border: 1px solid #e5e7eb; text-align: center; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
     .espec-card-sm:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(11,83,148,0.1); border-color: var(--blue); }
     .espec-icon-sm { width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
@@ -390,7 +391,7 @@
       <div class="footer-col"><h4>Contato</h4><p>📍 Rua João Andrade Guimarães, 124 – Guaratuba, PR</p><p>📱 WhatsApp: (41) 98831-8040</p><p>🕐 Seg–Sex: 8h às 18h</p></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2024 MedClin Clínica Médica. Todos os direitos reservados.</p>
+      <p>© 2026 MedClin Clínica Médica. Todos os direitos reservados.</p>
       <a href="https://www.instagram.com/medclin_guaratuba/" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     </div>
   </footer>
@@ -449,7 +450,7 @@
       <div class="footer-col"><h4>Contato</h4><p>📍 Rua João Andrade Guimarães, 124 – Guaratuba, PR</p><p>📱 WhatsApp: (41) 98831-8040</p><p>🕐 Seg–Sex: 8h às 18h</p></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2024 MedClin Clínica Médica. Todos os direitos reservados.</p>
+      <p>© 2026 MedClin Clínica Médica. Todos os direitos reservados.</p>
       <a href="https://www.instagram.com/medclin_guaratuba/" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     </div>
   </footer>
@@ -550,7 +551,7 @@
       <div class="footer-col"><h4>Contato</h4><p>📍 Rua João Andrade Guimarães, 124 – Guaratuba, PR</p><p>📱 WhatsApp: (41) 98831-8040</p><p>🕐 Seg–Sex: 8h às 18h</p></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2024 MedClin Clínica Médica. Todos os direitos reservados.</p>
+      <p>© 2026 MedClin Clínica Médica. Todos os direitos reservados.</p>
       <a href="https://www.instagram.com/medclin_guaratuba/" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
     </div>
   </footer>
